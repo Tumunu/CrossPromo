@@ -3,9 +3,7 @@
 ## (document is work in progress)
 This document is currently being worked on, and isn't entirely complete yet. Please do take care!
 
-When you download a game, one of the worst things to see if some horrendously low-quality advert presented at every possible opportunity. Not only does it make the game seem of a lower quality, but it can drive audiences away from your product to other games!
-
-And we don't want that... do we?
+When you download a game, one of the worst things to see is some horrendously low-quality advert presented at every possible opportunity. Not only does it make the game seem of a lower quality, but it can drive audiences away from your product to other games! And we don't want that... do we?
 
 **Welcome *CrossPromo*!** The aim of *CrossPromo* is to remove the need for using third-party advertisments all of the time, replacing the lower-paying bad quality adverisements, with high-quality native Cocos2d-x advertisements showing off aspects of your own brand or business.
 
@@ -23,7 +21,7 @@ Here's a sneak peek, at a very quickly thrown together sample!
 
 ## Here be dragons!
 
-I am still learning C++ and this was one of the first classes I wrote as I started learning. It may have underlying issues which will be fixed later or not be as efficient as it could be. However, that's part of the learning process! Feel free to suggest improvements or fixes!
+I am still learning C++. This may have underlying issues which will be fixed later or not be as efficient as it could be. However, that's part of the learning process! Feel free to suggest improvements or fixes!
 
 ## So how does CrossPromo work?!
 
@@ -49,7 +47,7 @@ CrossPromoManager::getInstance()->buttonSound = []{
 
 With the promo objects loaded, you're now free to show your promotions as and when you need to!
 
-4. Create event listeners for these CrossPromo events:
+4. Create event listeners for these CrossPromo events, just before you present a CrossPromo:
   * CROSS_PROMO_PRESENTED
   * CROSS_PROMO_DISMISSED
   * CROSS_PROMO_CLICKED
@@ -67,26 +65,27 @@ With the promo objects loaded, you're now free to show your promotions as and wh
   Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(presentListener, 1);
   ```
   
-5. Present a CrossPromo object! We pass in a string object too, so we can determine the promotion being presented for analytics.
+5. Disable any of your own UI (as currently CrossPromo doesn't swallow touch inputs!) and present a CrossPromo object! We pass in a string object too, so we can determine the promotion being presented for analytics.
 
 ```cpp
-string analyticsRef;
+// Disable touch inputs here on main UI objects.
 
+string analyticsRef;
 CrossPromoManager::getInstance()->showCrossPromoOnLayer(presentationLayer, analyticsRef);
 ```
 
-6. Yaay! *CrossPromo* is on the screen! When it is closed, you will receive the event via your listener, and be able to complete any further actions of your choosing!
+6. Yaay! *CrossPromo* is on the screen! When it is closed, you will receive the dismissed/clicked event via your listeners, and be able to complete any further actions of your choosing! Be sure to remove your listeners when CrossPromo is closed!
 
 ## What are the plans for the future?!
 The roadmap is clear and (relatively) simple:
-* Colors from hex strings instead of objects.
+* Colors from hex strings, as well as from objects.
 * Cleanup of code to allow for smoother handling of non-existant null properties.
 * Editing of cross_promo.json via a GUI-based application, instead of by text editor.
 
 ## (in)Frequently asked questions!!
 
 ### Why doesn't this allow for updating this file via the Internet?!
-I haven't added this in, as either you have your own solution for this or you do not, and it isn't the place of CrossPromo to dictate to you how you should manage that system. It wouldn't be too difficult for you to create a system to update the cross_promo.json file and the required assets file.
+I haven't added this in, as either you have your own solution for this or you do not, and it isn't the place of CrossPromo to dictate to you how you should manage that system. It wouldn't be too difficult for you to create a system to update the cross_promo.json file and the required assets file, but it isn't something that should be part of this.
 
 ### How can I ever repay you for this amazingness?!
 
