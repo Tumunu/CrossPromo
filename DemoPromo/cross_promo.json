@@ -1,0 +1,243 @@
+{
+	"promos": [{ 
+		"reference": "crosspromo_test",
+		"targetplatform": 0,
+		"startdate": null,
+		"enddate": null,
+		"promotype": 0,
+		"background": {
+			"startcolor": {
+				"r": 0,
+				"g": 0,
+				"b": 0
+			},
+			"endcolor": {
+				"r": 62,
+				"g": 62,
+				"b": 62
+			}
+		},
+		"objects": [{
+			"objecttype": 0,
+			"buttontype": null,
+			"spritename": null,
+			"title": "WOW!",
+			"font": "Comic Sans",
+			"fontsize": 25,
+			"posrelativeto": -1,
+			"pos": {
+				"x": 0.5,
+				"y": 0.925
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 0,
+			"dimensions": {
+				"width": 0.98,
+				"height": 0.1
+			},
+			"color": {
+				"r": 255,
+				"g": 255,
+				"b": 255
+			},
+			"z": 0,
+			"iOS-url": null,
+			"android-url": null,
+			"objecttag": 0
+		},{
+			"objecttype": 0,
+			"buttontype": null,
+			"spritename": null,
+			"title": "A wild CrossPromo has appeared!",
+			"font": "Comic Sans",
+			"fontsize": 20,
+			"posrelativeto": 0,
+			"pos": {
+				"x": 0,
+				"y": -0.075
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 0,
+			"dimensions": {
+				"width": 0.98,
+				"height": 0.1
+			},
+			"color": {
+				"r": 255,
+				"g": 255,
+				"b": 255
+			},
+			"z": 0,
+			"iOS-url": null,
+			"android-url": null,
+			"objecttag": 1
+		},{
+			"objecttype": 1,
+			"buttontype": -1,
+			"spritename": "wow",
+			"title": null,
+			"font": null,
+			"fontsize": null,
+			"posrelativeto": 1,
+			"pos": {
+				"x": -0.2,
+				"y": -0.22
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": -35,
+			"dimensions": null,
+			"color": null,
+			"z": 0,
+			"iOS-url": null,
+			"android-url": null,
+			"objecttag": 2
+		},{
+			"objecttype": 1,
+			"buttontype": -1,
+			"spritename": "wow",
+			"title": null,
+			"font": null,
+			"fontsize": null,
+			"posrelativeto": 1,
+			"pos": {
+				"x": 0.2,
+				"y": -0.22
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 35,
+			"dimensions": null,
+			"color": null,
+			"z": 0,
+			"iOS-url": null,
+			"android-url": null,
+			"objecttag": 3
+		},{
+			"objecttype": 1,
+			"buttontype": -1,
+			"spritename": "wow",
+			"title": null,
+			"font": null,
+			"fontsize": null,
+			"posrelativeto": 1,
+			"pos": {
+				"x": 0,
+				"y": -0.37
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 0,
+			"dimensions": null,
+			"color": null,
+			"z": 0,
+			"iOS-url": null,
+			"android-url": null,
+			"objecttag": 4
+		},{
+			"objecttype": 2,
+			"buttontype": 1,
+			"spritename": "facebook",
+			"title": null,
+			"font": null,
+			"fontsize": null,
+			"posrelativeto": -1,
+			"pos": {
+				"x": 0.5,
+				"y": 0.225
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 0,
+			"dimensions": null,
+			"color": null,
+			"z": 0,
+			"iOS-url": "https://facebook.com/ryanbournedev",
+			"android-url": "https://facebook.com/ryanbournedev",
+			"objecttag": 5
+		},{
+			"objecttype": 2,
+			"buttontype": 1,
+			"spritename": "twitter",
+			"title": null,
+			"font": null,
+			"fontsize": null,
+			"posrelativeto": 5,
+			"pos": {
+				"x": -0.25,
+				"y": 0
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 0,
+			"dimensions": null,
+			"color": null,
+			"z": 0,
+			"iOS-url": "https://twitter.com/ryanbourne28",
+			"android-url": "https://twitter.com/ryanbourne28",
+			"objecttag": 6
+		},{
+			"objecttype": 2,
+			"buttontype": 1,
+			"spritename": "github",
+			"title": null,
+			"font": null,
+			"fontsize": null,
+			"posrelativeto": 5,
+			"pos": {
+				"x": 0.25,
+				"y": 0
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 0,
+			"dimensions": null,
+			"color": null,
+			"z": 0,
+			"iOS-url": "https://github.com/ryanbourneuk/CrossPromo",
+			"android-url": "https://github.com/ryanbourneuk/CrossPromo",
+			"objecttag": 7
+		},{
+			"objecttype": 2,
+			"buttontype": 1,
+			"spritename": "paypal",
+			"title": null,
+			"font": null,
+			"fontsize": null,
+			"posrelativeto": -1,
+			"pos": {
+				"x": 0.5,
+				"y": 0.1
+			},
+			"anchorpoint": {
+				"x": 0.5,
+				"y": 0.5
+			},
+			"rotation": 0,
+			"dimensions": null,
+			"color": null,
+			"z": 0,
+			"iOS-url": "https://www.paypal.me/ryanbourne",
+			"android-url": "https://www.paypal.me/ryanbourne",
+			"objecttag": 8
+		}]
+	}]
+}
