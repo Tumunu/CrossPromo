@@ -1,0 +1,119 @@
+
+JSON Reference - CrossPromo
+
+"promos" : Array of Promo.
+
+Promo :
+	"reference" : String.
+
+		Used for analytics purposes, so it's possible to know which adverts are loaded, and which are reacted to.
+
+	"targetplatform" : Integer.
+
+		Used to determine if the advert should be shown on the current platform. Options are:
+			* Both (0)
+			* Android only (1)
+			* iOS only (2)
+
+	"startdate" / "enddate" : Currently unused.
+
+		Will be used in the future so that promos will only run at certain times.
+
+	"promotype" : Integer.
+
+		Used to determine what is being promoted. Options are:
+			* Twitter (0)
+			* Facebook (1)
+			* Game (2)
+
+	"background" : Object.
+
+		Contains "startcolor" & "endcolor", both Objects with values:
+			* "r", "g", "b" : Integer
+
+	"objects" : Array of Object.
+
+		Details each on-screen object that will be visible. Each array object is a different node.
+
+		"objecttype" : Integer.
+
+			Used to determine the type of object. Options are:
+				* Label (0)
+				* Sprite (1)
+				* Button (2)
+
+		"buttontype" : Integer (optional).
+
+			Used to determine the purpose of this button. Options are:
+				* null (-1, if not a button object)
+				* Exit (0)
+				* OpenURL (1)
+
+		"spritename" : String (optional).
+
+			Used to provide the name of the sprite required - if object is a sprite!
+
+		"title" : String (optional).
+
+			Used to provide the title for labels or buttons.
+
+		"font" : String (optional).
+
+			Used to provide the fontname for the label / button.
+
+		"fontsize" : Integer (optional).
+
+			Used to provide the font size for the label / button.
+
+		"posrelativeto" : Integer (optional).
+
+			Used to represent whether an object's position is relative to a previously added object. Each object has a given tag, and if another object's tag is referenced here, we should add this objects position values onto the referenced one.
+
+			For example:
+				* Object A has pos (0.5, 0.5)
+				* Object B is referenced off of Object A, and had pos of (.1, 0) - just right of Object A but on same Y level
+				* Object B's calculated position on screen is (0.6, 0.5)
+
+		"pos" : Object.
+
+			Used to provide the position values. Contains values:
+				* "x", "y" : Floats
+
+		"anchorpoint" : Object.
+
+			Used to provide the object's anchor point. If the anchor point is (0.5, 0.5), the object's position relates to the center of the object. If the anchor point is instead (0, 0), the position relates to the bottom left of the object. Contains values:
+				* "x", "y" : Floats
+
+		"rotation" : Integer (Optional).
+
+			Used to dictate how much an object should be rotated by. Will default to 0.
+
+		"dimensions" : Object (optional).
+
+			Used to provide the dimensions of a label, in order to constrain them to a certain size. Contains values:
+				* "width", "height" : Floats
+
+		"color" : Object (optional).
+
+			Used to define the object's color, if it is a label or a button. Contains values:
+				* "r", "g", "b" : Integer
+
+		"z" : Integer.
+
+			Used to define the z-order of object, in order to allow for custom layering of objects.
+
+		"iOS-url" : String (optional).
+
+			Used to define the link that a button object should load on iOS.
+
+		"android-url" : String (optional).
+
+			Used to define the link that a button object should load on Android.
+
+		"objecttag" : Integer.
+
+			Used to provide each object a reference value so other objects can access it, specifically for more fine-tuned positioning. Start at 0, and work upwards for each object. Do not give multiple objects the same tag.
+
+
+
+
