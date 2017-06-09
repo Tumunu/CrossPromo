@@ -2,7 +2,7 @@
 
 When you download a game onto your phone, one of the worst things to see is some horrendously low-quality advert presented at every possible opportunity. Not only does it make the game seem of a lower quality, but it can drive audiences away from your product to other games! And we don't want that... do we?
 
-**Welcoming *CrossPromo*!** The aim of *CrossPromo* is to remove the need for using third-party advertisments all of the time, replacing the lower-paying bad quality adverisements, with high-quality native Cocos2d-x advertisements showing off aspects of your own brand or business.
+**Welcoming *CrossPromo*!** The aim of *CrossPromo* is to remove the need for using third-party advertisments all of the time, replacing the lower-paying bad quality advertisements, with high-quality native Cocos2d-x advertisements showing off aspects of your own brand or business.
 
 Want to show off your other games? *CrossPromo* is made for that.
 
