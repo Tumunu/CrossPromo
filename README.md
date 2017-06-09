@@ -1,13 +1,10 @@
 # CrossPromo
 
-## (document is work in progress)
-This document is currently being worked on, and isn't entirely complete yet. Please do take care!
+When you download a game onto your phone, one of the worst things to see is some horrendously low-quality advert presented at every possible opportunity. Not only does it make the game seem of a lower quality, but it can drive audiences away from your product to other games! And we don't want that... do we?
 
-When you download a game, one of the worst things to see is some horrendously low-quality advert presented at every possible opportunity. Not only does it make the game seem of a lower quality, but it can drive audiences away from your product to other games! And we don't want that... do we?
+**Welcoming *CrossPromo*!** The aim of *CrossPromo* is to remove the need for using third-party advertisments all of the time, replacing the lower-paying bad quality adverisements, with high-quality native Cocos2d-x advertisements showing off aspects of your own brand or business.
 
-**Welcome *CrossPromo*!** The aim of *CrossPromo* is to remove the need for using third-party advertisments all of the time, replacing the lower-paying bad quality adverisements, with high-quality native Cocos2d-x advertisements showing off aspects of your own brand or business.
-
-Want to show off your other games? *CrossPromo* is for that.
+Want to show off your other games? *CrossPromo* is made for that.
 
 Want to promote your game's or business' social media accounts? *CrossPromo* can help with that.
 
@@ -25,7 +22,7 @@ I am still learning C++. This may have underlying issues which will be fixed lat
 
 ## So how does CrossPromo work?!
 
-CrossPromo is a group of classes, which reads from a .json file which defines each 'promotion' object. Within the promotion object, on-screen objects are defined as a set of properties which when read allows them to be presented onto the screen!
+CrossPromo reads from a .json file which defines multiple 'promotion' objects. Within the promotion objects, on-screen objects are defined as a set of properties which when read allows them to be presented onto the screen!
 
 Currently, the .json file has to be created by hand, however a sample .json file is provided for you to use as a base to work upon! There is also a reference file, to help understand the purpose of each of the properties.
 
@@ -79,7 +76,6 @@ CrossPromoManager::getInstance()->showCrossPromoOnLayer(presentationLayer, analy
 ## What are the plans for the future?!
 The roadmap is clear and (relatively) simple:
 * Colors from hex strings, as well as from objects.
-* Cleanup of code to allow for smoother handling of non-existant null properties.
 * Editing of cross_promo.json via a GUI-based application, instead of by text editor.
 
 ## (in)Frequently asked questions!!
