@@ -38,11 +38,6 @@ using namespace cocos2d;
 using namespace ui;
 
 class CrossPromoManager {
-private:
-  static CrossPromoManager *crossPromoManagerSingleton;
-  
-  vector<PromoData> crossPromos;
-  
 public:
   CrossPromoManager();
   ~CrossPromoManager();
@@ -53,6 +48,11 @@ public:
   void showCrossPromoOnLayer(Layer &target, string &analyticsReference);
   void promoClosedWithState(PromoExitStates exitState);
   
+  function<void()> buttonSound;
+  
+private:
+  static CrossPromoManager *crossPromoManagerSingleton;
+  
   void getCrossPromos();
   
   int getNumberOfPromosForPlatform(rapidjson::Value &jsonObject, int currentPlatform);
@@ -60,13 +60,13 @@ public:
   PromoData getPromoDataFor(rapidjson::Value jsonObject);
   PromoObjectData getPromoObjectDataFor(rapidjson::Value &jsonObject);
   
-  string getStringFrom(rapidjson::Value &jsonObject);
-  int getIntFrom(rapidjson::Value &jsonObject, int defaultValue);
-  float getFloatFrom(rapidjson::Value &jsonObject, float defaultValue);
+  string getStringFrom(rapidjson::Value &jsonObject, string key);
+  int getIntFrom(rapidjson::Value &jsonObject, string key, int defaultValue);
+  float getFloatFrom(rapidjson::Value &jsonObject, string key, float defaultValue);
   
-  ColorData getColorFrom(rapidjson::Value &jsonObject);
-  PositionData getPositionFrom(rapidjson::Value &jsonObject);
-  SizeData getSizeFrom(rapidjson::Value &jsonObject);
+  ColorData getColorFrom(rapidjson::Value &jsonObject, string key);
+  PositionData getPositionFrom(rapidjson::Value &jsonObject, string key);
+  SizeData getSizeFrom(rapidjson::Value &jsonObject, string key);
   
   Vec2 posInWindowFrom(float x, float y);
   int randomIndexUpTo(int n);
@@ -78,7 +78,7 @@ public:
   
   ui::Button *exitButton;
   
-  function<void()> buttonSound;
+  vector<PromoData> crossPromos;
 };
 
 #endif /* CrossPromoManager_h */

@@ -156,7 +156,7 @@ void CrossPromoManager::getCrossPromos() {
   crossPromos.reserve(getNumberOfPromosForPlatform(advertArray, currentPlatform));
   
   for (rapidjson::SizeType i = 0; i < advertArray.Size(); i++) {
-    auto targetPlatform = getIntFrom(advertArray[i][TARGET_PLATFORM.c_str()], 0);
+    auto targetPlatform = getIntFrom(advertArray[i], TARGET_PLATFORM, 0);
     
     if (targetPlatform == 0 || (targetPlatform == currentPlatform)) {
       // Populate an array of advert arrays! We'll use these when they're called to populate the layer. We don't do this on startup!
@@ -169,7 +169,7 @@ int CrossPromoManager::getNumberOfPromosForPlatform(rapidjson::Value &jsonObject
   auto count = 0;
   
   for (rapidjson::SizeType i = 0; i < jsonObject.Size(); i++) {
-    auto targetPlatform = getIntFrom(jsonObject[i][TARGET_PLATFORM.c_str()], 0);
+    auto targetPlatform = getIntFrom(jsonObject[i], TARGET_PLATFORM, 0);
     
     if (targetPlatform == 0 || (targetPlatform == currentPlatform)) {
       count++;
@@ -182,12 +182,12 @@ int CrossPromoManager::getNumberOfPromosForPlatform(rapidjson::Value &jsonObject
 PromoData CrossPromoManager::getPromoDataFor(rapidjson::Value jsonObject) {
   PromoData promoData = PromoData();
   
-  promoData.reference = getStringFrom(jsonObject[REFERENCE.c_str()]);
-  promoData.crossPromoType = (CrossPromoType)getIntFrom(jsonObject[PROMO_TYPE.c_str()], 0);
+  promoData.reference = getStringFrom(jsonObject, REFERENCE);
+  promoData.crossPromoType = (CrossPromoType)getIntFrom(jsonObject, PROMO_TYPE, 0);
   
-  auto backgroundData = jsonObject[BACKGROUND.c_str()].GetObject();
-  promoData.background.start = getColorFrom(backgroundData[START_COLOR.c_str()]);
-  promoData.background.end = getColorFrom(backgroundData[END_COLOR.c_str()]);
+  rapidjson::Value backgroundData = jsonObject[BACKGROUND.c_str()].GetObject();
+  promoData.background.start = getColorFrom(backgroundData, START_COLOR);
+  promoData.background.end = getColorFrom(backgroundData, END_COLOR);
   
   auto promoObjects = jsonObject[OBJECTS.c_str()].GetArray();
   
@@ -203,91 +203,89 @@ PromoData CrossPromoManager::getPromoDataFor(rapidjson::Value jsonObject) {
 PromoObjectData CrossPromoManager::getPromoObjectDataFor(rapidjson::Value &jsonObject) {
   PromoObjectData promoObjectData;
   
-  promoObjectData.objectType = (ObjectType)getIntFrom(jsonObject[OBJECT_TYPE.c_str()], 0);
-  promoObjectData.buttonType = (ButtonType)getIntFrom(jsonObject[BUTTON_TYPE.c_str()], PROMO_INVALID_INT);
+  promoObjectData.objectType = (ObjectType)getIntFrom(jsonObject, OBJECT_TYPE, 0);
+  promoObjectData.buttonType = (ButtonType)getIntFrom(jsonObject, BUTTON_TYPE, PROMO_INVALID_INT);
   
-  promoObjectData.spriteName = getStringFrom(jsonObject[SPRITE_NAME.c_str()]);
+  promoObjectData.spriteName = getStringFrom(jsonObject, SPRITE_NAME);
   
-  promoObjectData.title = getStringFrom(jsonObject[TITLE.c_str()]);
-  promoObjectData.font = getStringFrom(jsonObject[TITLE_FONT.c_str()]);
-  promoObjectData.fontSize = getIntFrom(jsonObject[FONT_SIZE.c_str()], PROMO_INVALID_INT);
+  promoObjectData.title = getStringFrom(jsonObject, TITLE);
+  promoObjectData.font = getStringFrom(jsonObject, TITLE_FONT);
+  promoObjectData.fontSize = getIntFrom(jsonObject, FONT_SIZE, PROMO_INVALID_INT);
   
-  promoObjectData.posRelativeTo = getIntFrom(jsonObject[POS_RELATIVE_TO.c_str()], PROMO_INVALID_INT);
-  promoObjectData.position = getPositionFrom(jsonObject[POS.c_str()]);
-  promoObjectData.anchorPoint = getPositionFrom(jsonObject[ANCHOR_POINT.c_str()]);
-  promoObjectData.rotation = getIntFrom(jsonObject[ROTATION.c_str()], 0);
+  promoObjectData.posRelativeTo = getIntFrom(jsonObject, POS_RELATIVE_TO, PROMO_INVALID_INT);
+  promoObjectData.position = getPositionFrom(jsonObject, POS);
+  promoObjectData.anchorPoint = getPositionFrom(jsonObject, ANCHOR_POINT);
+  promoObjectData.rotation = getIntFrom(jsonObject, ROTATION, 0);
   
-  promoObjectData.dimensions = getSizeFrom(jsonObject[DIMENSIONS.c_str()]);
+  promoObjectData.dimensions = getSizeFrom(jsonObject, DIMENSIONS);
   
-  if (!jsonObject[COLOR.c_str()].IsNull()) {
-    promoObjectData.color = getColorFrom(jsonObject[COLOR.c_str()]);
-  }
+  promoObjectData.color = getColorFrom(jsonObject, COLOR);
   
-  promoObjectData.zOrder = getIntFrom(jsonObject[Z_ORDER.c_str()], 0);
+  promoObjectData.zOrder = getIntFrom(jsonObject, Z_ORDER, 0);
   
-  promoObjectData.iOSUrl = getStringFrom(jsonObject[IOS_URL.c_str()]);
-  promoObjectData.androidUrl = getStringFrom(jsonObject[ANDROID_URL.c_str()]);
+  promoObjectData.iOSUrl = getStringFrom(jsonObject, IOS_URL);
+  promoObjectData.androidUrl = getStringFrom(jsonObject, ANDROID_URL);
   
-  promoObjectData.objectTag = getIntFrom(jsonObject[OBJECT_TAG.c_str()], 0);
+  promoObjectData.objectTag = getIntFrom(jsonObject, OBJECT_TAG, 0);
   
   return promoObjectData;
 }
   
-string CrossPromoManager::getStringFrom(rapidjson::Value &jsonObject) {
-  if (!jsonObject.IsString()) {
+string CrossPromoManager::getStringFrom(rapidjson::Value &jsonObject, string key) {
+  if (!jsonObject[key.c_str()].IsString()) {
     return "";
   }
   
-  return jsonObject.GetString();
+  return jsonObject[key.c_str()].GetString();
 }
 
-int CrossPromoManager::getIntFrom(rapidjson::Value &jsonObject, int defaultValue) {
-  if (!jsonObject.IsInt()) {
+int CrossPromoManager::getIntFrom(rapidjson::Value &jsonObject, string key, int defaultValue) {
+  if (!jsonObject[key.c_str()].IsInt()) {
     return defaultValue;
   }
   
-  return jsonObject.GetInt();
+  return jsonObject[key.c_str()].GetInt();
 }
 
-float CrossPromoManager::getFloatFrom(rapidjson::Value &jsonObject, float defaultValue) {
-  if (!jsonObject.IsFloat()) {
+float CrossPromoManager::getFloatFrom(rapidjson::Value &jsonObject, string key, float defaultValue) {
+  if (!jsonObject[key.c_str()].IsFloat()) {
     return defaultValue;
   }
   
-  return jsonObject.GetFloat();
+  return jsonObject[key.c_str()].GetFloat();
 }
 
-ColorData CrossPromoManager::getColorFrom(rapidjson::Value &jsonObject) {
+ColorData CrossPromoManager::getColorFrom(rapidjson::Value &jsonObject, string key) {
   ColorData colorData;
   
-  colorData.r = getIntFrom(jsonObject[RED.c_str()], 0);
-  colorData.g = getIntFrom(jsonObject[GREEN.c_str()], 0);
-  colorData.b = getIntFrom(jsonObject[BLUE.c_str()], 0);
+  colorData.r = getIntFrom(jsonObject[key.c_str()], RED, 0);
+  colorData.g = getIntFrom(jsonObject[key.c_str()], GREEN, 0);
+  colorData.b = getIntFrom(jsonObject[key.c_str()], BLUE, 0);
   
   return colorData;
 }
 
-PositionData CrossPromoManager::getPositionFrom(rapidjson::Value &jsonObject) {
+PositionData CrossPromoManager::getPositionFrom(rapidjson::Value &jsonObject, string key) {
   PositionData positionData;
   
-  positionData.x = getFloatFrom(jsonObject[X_POS.c_str()], 0.0);
-  positionData.y = getFloatFrom(jsonObject[Y_POS.c_str()], 0.0);
+  positionData.x = getFloatFrom(jsonObject[key.c_str()], X_POS, 0.0);
+  positionData.y = getFloatFrom(jsonObject[key.c_str()], Y_POS, 0.0);
   
   return positionData;
 }
 
-SizeData CrossPromoManager::getSizeFrom(rapidjson::Value &jsonObject) {
+SizeData CrossPromoManager::getSizeFrom(rapidjson::Value &jsonObject, string key) {
   SizeData sizeData;
   
   sizeData.width = -1;
   sizeData.height = -1;
   
-  if (jsonObject.IsNull()) {
+  if (jsonObject[key.c_str()].IsNull()) {
     return sizeData;
   }
   
-  sizeData.width = getFloatFrom(jsonObject[WIDTH.c_str()], -1.0);
-  sizeData.height = getFloatFrom(jsonObject[HEIGHT.c_str()], -1.0);
+  sizeData.width = getFloatFrom(jsonObject[key.c_str()], WIDTH, -1.0);
+  sizeData.height = getFloatFrom(jsonObject[key.c_str()], HEIGHT, -1.0);
   
   return sizeData;
 }
